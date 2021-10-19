@@ -1,4 +1,5 @@
 import React from "react";
+import ItemCounter from "../itemcounter/itemcounter";
 
 const Item = ({ img, title, price }) => {
     return (
@@ -9,13 +10,8 @@ const Item = ({ img, title, price }) => {
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <p>{price}</p>
-                    {/* CREAR COMPONENTE CONTADOR */}
-                    <div className='d-flex'>
-                        <button>+</button>
-                        <p>0</p>
-                        <button>+</button>
-                    </div>
-                    <a href="/#" className="btn btn-primary">Go somewhere</a>
+                    <ItemCounter initial={0} stock={10} />
+                    <a href="/#" className="btn btn-primary d-flex justify-content-center">Go somewhere</a>
                 </div>
             </div>
         </div></>
