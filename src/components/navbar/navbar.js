@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/navbar.css'
-import sushiLoveLogo from '../../images/sushiLove.png'
+import sushiLoveLogo from '../..//images/sushiLove.png'
 import { CartWidget } from "../cartwidget/cartwidget";
 
 const Navbar = () => {
@@ -13,10 +13,14 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='navList'>
-                        <li className='my-3 mx-3'><a href="https://reactjs.org">Home</a></li>
+                        {['Home', 'Menu', 'Delivery', 'Contact Us'].map(
+                            (u) => (<li className='my-3 mx-3'><a href="https://reactjs.org">{u}</a></li>)
+                        )
+                        }
+                        {/* <li className='my-3 mx-3'><a href="https://reactjs.org">Home</a></li>
                         <li className='my-3 mx-3'><a href="https://reactjs.org">Menu</a></li>
                         <li className='my-3 mx-3'><a href="https://reactjs.org">Delivery</a></li>
-                        <li className='my-3 mx-3'><a href="https://reactjs.org">Contact Us</a></li>
+                        <li className='my-3 mx-3'><a href="https://reactjs.org">Contact Us</a></li> */}
                         <li className='my-3 mx-3'><CartWidget /></li>
                         <li className='my-3 mx-3'>0</li>
                     </ul>
