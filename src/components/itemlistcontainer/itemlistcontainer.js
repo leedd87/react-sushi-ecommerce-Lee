@@ -17,6 +17,8 @@ const ItemListContainer = () => {
             }, 1500);
         });
 
+
+
     useEffect(() => {
         getData(Products)
             .then((res) => setProductos(res))
