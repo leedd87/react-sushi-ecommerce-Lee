@@ -15,6 +15,6 @@
 		"name": "SushiCali",
 		"price": 500,
 		"id": 3,
-		"img": "../images/sushi1.jpg"
+		"img": "images/sushi1.jpg"
 	}
 ]

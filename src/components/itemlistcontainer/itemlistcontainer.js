@@ -14,7 +14,7 @@ const ItemListContainer = () => {
                 } else {
                     reject('No se cargo el menu')
                 }
-            }, 3000);
+            }, 1500);
         });
 
     useEffect(() => {
@@ -25,10 +25,12 @@ const ItemListContainer = () => {
 
     return (
         <div className='d-flex'>
-            {productos.length ? productos.map((producto) => (
-                <Item product={producto} key={producto.id} />
-            ))
+            {productos.length ? productos
+                .map((producto) => (
+                    <Item producto={producto} key={producto.id} />
+                ))
                 : 'Cargando...'}
+
         </div>
     )
 }
