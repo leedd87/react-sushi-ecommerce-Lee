@@ -1,22 +1,36 @@
-import Navbar from './components/navbar/navbar'
+import Navbar from './components/navbar/navBar'
 import './App.css';
-//import ItemListContainer from './components/itemlistcontainer/itemlistcontainer'
-import ItemDetailContainer from './components/itemdetailcontainer/itemdetailcontainer';
-//import ItemDetail from './components/itemdetail/itemdetail';
+import ItemListContainer from './components/itemlistcontainer/itemListContainer'
+import ItemDetailContainer from './components/itemdetailcontainer/itemDetailContainer';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 function App() {
 
 
 
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <main className='container-fluid my-3'>
-        <ItemDetailContainer />
-      </main>
+
+      <Switch>
+        <Route exact path='/'>
+          <ItemListContainer />
+        </Route>
+        <Route exact path='/menu'>
+          <main className='container-fluid my-3'>
+            <ItemListContainer />
+          </main>
+        </Route>
+        <Route exact path='/detail/:detailId'>
+          <main className='container-fluid my-3'>
+            <ItemDetailContainer />
+          </main>
+
+        </Route>
 
 
-
-    </>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

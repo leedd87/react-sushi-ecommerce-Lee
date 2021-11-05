@@ -6,13 +6,13 @@
 		"img": "images/sushi1.jpg"
 	},
 	{
-		"name": "SushiCali",
+		"name": "SushiPhila",
 		"price": 150,
 		"id": 2,
 		"img": "images/sushi1.jpg"
 	},
 	{
-		"name": "SushiCali",
+		"name": "SushiViet",
 		"price": 500,
 		"id": 3,
 		"img": "images/sushi1.jpg"
