@@ -36,7 +36,6 @@ const ItemDetailContainer = () => {
 
     return (
         <>
-            <h1>hola soy{detailId}</h1>
 
             <div className='d-flex'>
                 {productos ? (
