@@ -20,23 +20,15 @@ const ItemDetailContainer = () => {
             }, 2000);
         });
 
-
-
     useEffect(() => {
-
-
         getData(Products)
-            .then((res) => {
-                setProductos(res.filter((producto) => producto.id === detailId))
-            }
-            )
+            .then((res) => setProductos(res))
+            .catch((err) => console.log(err))
     }, [detailId]);
     console.log(productos)
 
-
     return (
         <>
-
             <div className='d-flex'>
                 {productos ? (
                     // console.log('hola')

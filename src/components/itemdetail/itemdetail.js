@@ -18,18 +18,13 @@ const ItemDetail = ({ producto }) => {
                                 <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                                 <p>$ {producto.price}</p>
                                 <ItemCounter initial={0} stock={10} />
-                                <a href="/#" className="btn btn-primary d-flex justify-content-center">Go somewhere</a>
+                                <a href="/" className="btn btn-primary d-flex justify-content-center">Go somewhere</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
         </>
-
     )
 }
 

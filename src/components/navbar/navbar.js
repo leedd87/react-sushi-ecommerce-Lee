@@ -23,7 +23,7 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='navList'>
-                        {categories.map(({ url, label, index }) => (<li className='my-3 mx-3'><Link key={index} to={`/${url}`}>{label}</Link ></li>))}
+                        {categories.map(({ url, label }) => (<li className='my-3 mx-3'><Link key={url} to={`/${url}`}>{label}</Link ></li>))}
                         {/* <li className='my-3 mx-3'><Link to={`/`}>Home</Link></li>
                         <li className='my-3 mx-3'><Link to={`/menu`}>Menu</Link></li>
                         <li className='my-3 mx-3'><Link to={`/delivery`}>Delivery</Link></li>
