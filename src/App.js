@@ -1,5 +1,4 @@
 import Navbar from './components/navbar/navBar'
-import './App.css';
 import ItemListContainer from './components/itemlistcontainer/itemListContainer'
 import ItemDetailContainer from './components/itemdetailcontainer/itemDetailContainer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -14,17 +13,19 @@ function App() {
 
       <Switch>
         <Route exact path='/'>
-          <ItemListContainer />
-        </Route>
-        <Route exact path='/menu'>
-          <main className='container-fluid my-3'>
+          <div className='item-list-container'>
             <ItemListContainer />
-          </main>
+          </div>
+        </Route>
+        <Route exact path='/categoria/:categoryId'>
+          <div className='container-fluid my-3 '>
+            <ItemListContainer />
+          </div>
         </Route>
         <Route exact path='/detail/:detailId'>
-          <main className='container-fluid my-3'>
+          <div className='container my-3'>
             <ItemDetailContainer />
-          </main>
+          </div>
 
         </Route>
 

@@ -4,15 +4,6 @@ import sushiLoveLogo from '../..//images/sushiLove.png'
 import { CartWidget } from "../cartwidget/cartWidget";
 import { Link } from 'react-router-dom'
 
-const categories = [
-    { url: '', label: 'Home' },
-    { url: 'menu', label: 'Menu' },
-    { url: 'delivery', label: 'Delivery' },
-    { url: 'contactus', label: 'Contact Us' },
-
-]
-
-
 const Navbar = () => {
     return (
         <>
@@ -23,11 +14,10 @@ const Navbar = () => {
                 </div>
                 <div>
                     <ul className='navList'>
-                        {categories.map(({ url, label }) => (<li className='my-3 mx-3'><Link key={url} to={`/${url}`}>{label}</Link ></li>))}
-                        {/* <li className='my-3 mx-3'><Link to={`/`}>Home</Link></li>
-                        <li className='my-3 mx-3'><Link to={`/menu`}>Menu</Link></li>
-                        <li className='my-3 mx-3'><Link to={`/delivery`}>Delivery</Link></li>
-                        <li className='my-3 mx-3'><Link to={`/contactus`}>Contact Us</Link></li> */}
+                        <li className='my-3 mx-3'><Link to={""}>Home</Link></li>
+                        <li className='my-3 mx-3'><Link to={`/categoria/sushi`}>Sushi</Link></li>
+                        <li className='my-3 mx-3'><Link to={`/categoria/salad`}>Salad</Link></li>
+                        <li className='my-3 mx-3'><Link to={`/categoria/poke`}>Poke</Link></li>
                         <li className='my-3 mx-3'><Link to={`/cart`}><CartWidget /></Link></li>
                         <li className='my-3 mx-3'>0</li>
                     </ul>
