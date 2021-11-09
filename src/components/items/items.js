@@ -1,5 +1,5 @@
 import React from "react";
-import ItemCounter from "../itemcounter/itemCounter";
+// import ItemCounter from "../itemcounter/itemCounter";
 import { Link } from "react-router-dom"
 
 const Item = ({ producto }) => {
@@ -15,8 +15,7 @@ const Item = ({ producto }) => {
                             <p>${producto.price}</p>
                         </div>
                     </Link>
-                    <ItemCounter initial={0} stock={10} />
-                    <a href="/" className="btn btn-primary d-flex justify-content-center">Comprar</a>
+                    {/* <ItemCounter initial={0} stock={producto.stock} /> */}
                 </div>
             </div>
         </>

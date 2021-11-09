@@ -31,7 +31,10 @@ const ItemListContainer = () => {
                 categoryId ?
                     setProductos(res.filter((producto) => producto.category === categoryId))
                     : setProductos(res)
-            })
+
+            }
+
+            )
             .catch((err) => console.log(err));
     }, [categoryId]);
 
