@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Products from '../../products.json'
 import ItemDetail from '../itemdetail/itemDetail';
-
+import Loader from '../loader/loader'
 
 
 const ItemDetailContainer = () => {
@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
                 } else {
                     reject('No se cargo el menu')
                 }
-            }, 2000);
+            }, 3000);
         });
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const ItemDetailContainer = () => {
                 {productos ? (
 
                     <ItemDetail producto={productos} />
-                ) : 'Cargando'
+                ) : <Loader />
                 }
 
             </div>

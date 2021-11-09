@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Products from '../../products.json'
 import Item from '../items/items';
 import { useParams } from "react-router-dom";
+import Loader from '../loader/loader';
 
 
 const ItemListContainer = () => {
@@ -25,17 +26,16 @@ const ItemListContainer = () => {
 
     useEffect(() => {
         getData(Products)
-            .then((res) =>
-            //probando categoryId <--- antes no estaba 
-            {
+            .then((res) => {
                 categoryId ?
                     setProductos(res.filter((producto) => producto.category === categoryId))
                     : setProductos(res)
+            })
 
-            }
 
-            )
             .catch((err) => console.log(err));
+
+
     }, [categoryId]);
 
     return (
@@ -45,7 +45,7 @@ const ItemListContainer = () => {
                 .map((producto) => (
                     <Item producto={producto} key={producto.id} />
                 ))
-                : 'Cargando...'}
+                : <Loader />}
         </div>
 
 
