@@ -9,8 +9,9 @@ const BtnCart = ({ count }) => {
                 <button className="col-9 col-sm-8 justify-self-center mt-1">
                     <Link to='/cart'>Ver carrito:{count}</Link>
                 </button>
-
-
+                <button className="col-9 col-sm-8 justify-self-center mt-1">
+                    <Link to='/'>Volver</Link>
+                </button>
             </div>
         </>
     )
