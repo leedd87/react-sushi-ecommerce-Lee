@@ -19,7 +19,7 @@ const Navbar = () => {
                         <li className='my-3 mx-3'><Link to={`/categoria/salad`}>Salad</Link></li>
                         <li className='my-3 mx-3'><Link to={`/categoria/poke`}>Poke</Link></li>
                         <li className='my-3 mx-3'><Link to={`/cart`}><CartWidget /></Link></li>
-                        <li className='my-3 mx-3'>0</li>
+
                     </ul>
                 </div>
             </nav>

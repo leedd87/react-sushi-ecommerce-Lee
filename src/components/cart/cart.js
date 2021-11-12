@@ -1,23 +1,55 @@
-import React from 'react';
+
+import { useContext } from "react";
+import { CartContext } from "../../context/cartContext";
+import { Link } from "react-router-dom";
 
 
-const Cart = ({ count }) => {
-    //tengo que exportar el valor de btnCart y mostrarlo en este Cart
+//cart container
+
+const Cart = () => {
+
+    const { cart, removeItem, emptyCart } = useContext(CartContext);
+    // console.log(setCart)
+
     return (
-        <>
-            <div className='d-flex flex-column justify-content-center align-items-center col-12 my-3'>
-                <div>
-                    <h3 className="modal-title">Carrito</h3>
-                    <div className="modal-body">
-                        <p>ACA VAN LOS ITEMS</p>
+        <section className='row container-fluid justify-content-center my-5'>
+            {cart.length ? (
+                cart.map((item) => (
+                    <div className='row justify-content-center'>
+                        <article key={item.id}>
+                            <div>
+                                <div className='container'>
+                                    <img src={item.img} alt={item.name} />
+                                </div>
+                                <h2>{item.name}</h2>
+                            </div>
+                            <div>
+                                <span>{item.count}</span>
+                                <span>$ {item.price}</span>
+                            </div>
+                            <div>
+                                <button onClick={() => removeItem(item.id)}>Eliminar</button>
+                            </div>
+                        </article>
                     </div>
+                ))
+            ) : (
+                <>
+                    <h1>No hay productos</h1>
+                </>
+            )}
+            {cart.length ? (
+                <button onClick={() => emptyCart()}>
+                    Eliminar todo el carrito
+                </button>
+            ) : (
+                <Link to='/'>
+                    <button>Volver</button>
+                </Link>
+            )}
+        </section>
 
-                    <button type="button" className="btn btn-secondary">Cancelar</button>
-                    <button type="button" className="btn btn-primary">Comprar</button>
-                </div>
-            </div>
-
-        </>)
+    )
 }
 
-export default Cart
+export default Cart;

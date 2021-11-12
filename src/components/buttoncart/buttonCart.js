@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom"
 
 
-const BtnCart = ({ count }) => {
+
+const BtnCart = ({ count, img, name, price, stock }) => {
     return (
         <>
             <div className="col-10 col-sm-9 col-lg-8 row justify-content-center align-content-center justify-self-center mx-0">

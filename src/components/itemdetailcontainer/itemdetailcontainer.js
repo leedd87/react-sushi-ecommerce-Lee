@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
         getData(Products)
             .then((res) => {
                 let producto = res.filter((e) => {
-                    console.log(e)
+                    // console.log(e)
                     if (e.id === parseInt(detailId)) {
                         return e
                     } else {
@@ -33,7 +33,7 @@ const ItemDetailContainer = () => {
                     }
                 }
                 )
-                console.log(producto)
+                // console.log(producto)
                 setProductos(producto[0])
             })
             .catch((err) => console.log(err))
@@ -47,7 +47,11 @@ const ItemDetailContainer = () => {
 
                 {productos ? (
 
-                    <ItemDetail producto={productos} />
+                    <ItemDetail
+                        img={productos.img}
+                        name={productos.name}
+                        price={productos.price}
+                        stock={productos.stock} />
                 ) : <Loader />
                 }
 
