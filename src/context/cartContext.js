@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => {
         } else {
             const foundedItem = cart.find((product) => product.id === item.id);
             foundedItem.counter = foundedItem.counter + quantity;
+            setCart([...cart])
         }
 
     };
