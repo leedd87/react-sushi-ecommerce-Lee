@@ -16,8 +16,8 @@ export const CartProvider = ({ children }) => {
             const foundedItem = cart.find((product) => product.id === item.id);
             foundedItem.counter = foundedItem.counter + quantity;
         }
-        return //<---revisar si return adentro del else y del if
-    };//revisar
+
+    };
 
 
     const removeItem = (id) => {
@@ -30,6 +30,9 @@ export const CartProvider = ({ children }) => {
     const emptyCart = () => {
         setCart([])
     }
+
+
+
     return (
         <CartContext.Provider value={{ cart, addItem, removeItem, emptyCart }}>
             {children}
