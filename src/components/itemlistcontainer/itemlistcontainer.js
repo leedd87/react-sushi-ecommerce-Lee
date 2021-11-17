@@ -1,51 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import Products from '../../products.json'
+import { getProductos } from '../../getProducts';
 import Item from '../items/items';
 import { useParams } from "react-router-dom";
 import Loader from '../loader/loader';
 
 
 const ItemListContainer = () => {
-    //probando cambio
-    const { categoryId } = useParams();
-    //fin probando cambio
-    const [productos, setProductos] = useState([]);
+    const [loading, setLoading] = useState(true)
 
-    const getData = (data) =>
-        new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (data) {
-                    resolve(data);
-                } else {
-                    reject('No se cargo el menu')
-                }
-            }, 2000);
-        });
+    const { categoryId } = useParams();
+
+    const [productos, setProductos] = useState([]);
+    console.log(productos)
+
 
 
 
     useEffect(() => {
-        getData(Products)
-            .then((res) => {
-                categoryId ?
-                    setProductos(res.filter((producto) => producto.category === categoryId))
-                    : setProductos(res)
+        getProductos
+            .then(res => {
+                if (categoryId) {
+                    setProductos(res.filter(item => item.category === categoryId))
+                } else {
+                    setProductos(res)
+                }
             })
 
 
-            .catch((err) => console.log(err));
+            .catch(err => console.log(err))
+            .finally()
 
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000);
 
     }, [categoryId]);
+
 
     return (
 
         <div className='container-fluid row justify-content-center'>
-            {productos.length ? productos
-                .map((producto) => (
-                    <Item producto={producto} key={producto.id} />
+            {loading ?
+                <div>
+                    <Loader />
+                </div>
+                :
+                productos.map((item) => (
+                    <Item producto={item} key={item.id} />
                 ))
-                : <Loader />}
+            }
         </div>
 
 

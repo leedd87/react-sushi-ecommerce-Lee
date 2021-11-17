@@ -1,66 +1,38 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Products from '../../products.json'
+import { getProductos } from '../../getProducts';
 import ItemDetail from '../itemdetail/itemDetail';
 import Loader from '../loader/loader'
 
 
 const ItemDetailContainer = () => {
 
-    const [productos, setProductos] = useState(null);
+    const [productos, setProductos] = useState({});
     const { detailId } = useParams();
-
-    const getData = (data) =>
-        new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (data) {
-                    resolve(data);
-                } else {
-                    reject('No se cargo el menu')
-                }
-            }, 3000);
-        });
+    const [loadingTwo, setLoadingTwo] = useState(true)  //se muestra un loading inicial en true
 
     useEffect(() => {
-        getData(Products)
-            .then((res) => {
-                let producto = res.filter((e) => {
-                    // console.log(e)
-                    if (e.id === parseInt(detailId)) {
-                        return e
-                    } else {
-                        return null
-                    }
-                }
-                )
-                // console.log(producto)
-                setProductos(producto[0])
-            })
-            .catch((err) => console.log(err))
-    }, [productos, detailId]);
+        getProductos
+            .then(res => setProductos(res.find(prod => prod.id === parseInt(detailId))))
+            .catch(err => console.log(err))
+            .finally()
+
+        setTimeout(() => {
+            setLoadingTwo(false)
+        }, 2000);
+    }, [detailId]);
 
 
 
     return (
         <>
             <div className='container-fluid row justify-content-center'>
-
-                {productos ? (
-
-                    <ItemDetail
-                        img={productos.img}
-                        name={productos.name}
-                        price={productos.price}
-                        stock={productos.stock} />
-                ) : <Loader />
+                {
+                    loadingTwo ? <Loader /> :
+                        <ItemDetail
+                            item={productos} />
                 }
-
             </div>
-
-
-
-
-
         </>
     )
 

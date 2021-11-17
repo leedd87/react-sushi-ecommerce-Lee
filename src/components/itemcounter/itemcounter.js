@@ -1,29 +1,28 @@
 import { useState } from "react"
-import { useContext } from "react";
-import { CartContext } from "../../context/cartContext";
+// import { useContext } from "react";
+// import { CartContext } from "../../context/cartContext";
 
-const ItemCounter = ({ initial, stock, onAdd, item }) => {
+const ItemCounter = ({ onAdd, stock }) => {
 
-    const [count, setCount] = useState(initial);
-    const { addItem } = useContext(CartContext)
+    const [count, setCount] = useState(0);
+    // const { addItem, updateItemsInCart } = useContext(CartContext)
+
     const encrease = () => {
-        if (count >= initial && count < stock) {
+        if (count < stock) {
             setCount(count + 1)
-        }
+            // if (!showBtn) {
+            //     addItem(item, 1);
+            //     updateItemsInCart(item, -1)
+            // }
+        } else { alert('No hay mas stock') }
     }
 
     const decrease = () => {
-        if (count > initial) {
+        if (count > 1) {
             setCount(count - 1)
-        }
+        } else { alert('No se puede elegir menos') } //revisar si vale la pena mantener alert
     }
 
-    const agregar = () => {
-        if (count !== 0) {
-            onAdd(count)
-            addItem(item, count)
-        }
-    }
 
     return (
         <>
@@ -34,8 +33,11 @@ const ItemCounter = ({ initial, stock, onAdd, item }) => {
                     <button onClick={encrease}>+</button>
                 </div >
                 <div>
-                    <button onClick={agregar} className="btn btn-primary d-flex justify-content-center mb-3"> Agregar Al carrito</button>
+                    <button onClick={() => {
+                        onAdd(count)
+                    }} className="btn btn-primary d-flex justify-content-center mb-3"> Agregar Al carrito</button>
                 </div>
+                {/* <p className=" my-3"> Cantidad: {count}</p> */}
             </div>
         </>
     )
