@@ -1,26 +1,34 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductos } from '../../getProducts';
 import ItemDetail from '../itemdetail/itemDetail';
-import Loader from '../loader/loader'
+import { getFirestore } from '../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+// import { getProductos } from '../../getProducts';
+// import { getProductos } from '../../getProducts';
+// import Loader from '../loader/loader'
 
 
 const ItemDetailContainer = () => {
 
-    const [productos, setProductos] = useState({});
     const { detailId } = useParams();
-    const [loadingTwo, setLoadingTwo] = useState(true)  //se muestra un loading inicial en true
+    const [productos, setProductos] = useState({});
+    // const [loadingTwo, setLoadingTwo] = useState(true)  //se muestra un loading inicial en true
+
+
 
     useEffect(() => {
-        getProductos
-            .then(res => setProductos(res.find(prod => prod.id === parseInt(detailId))))
-            .catch(err => console.log(err))
-            .finally()
+        const db = getFirestore();
 
-        setTimeout(() => {
-            setLoadingTwo(false)
-        }, 2000);
-    }, [detailId]);
+        const itemRef = doc(db, 'items', detailId);
+        getDoc(itemRef).then(snapShot => {
+            if (snapShot.exists()) {
+                console.log(snapShot.data())
+                setProductos(snapShot.data())
+            }
+        })
+    }, [detailId])
+
+
 
 
 
@@ -28,9 +36,11 @@ const ItemDetailContainer = () => {
         <>
             <div className='container-fluid row justify-content-center'>
                 {
-                    loadingTwo ? <Loader /> :
-                        <ItemDetail
-                            item={productos} />
+                    // productos ?
+                    // loadingTwo ? <Loader /> :
+                    <ItemDetail
+                        item={productos} />
+                    // : "Loading..."
                 }
             </div>
         </>

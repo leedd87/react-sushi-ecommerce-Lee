@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { getProductos } from '../../getProducts';
+
 import Item from '../items/items';
 import { useParams } from "react-router-dom";
-import Loader from '../loader/loader';
+// import Loader from '../loader/loader';
+
+import { getDocs, getFirestore } from "@firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
 
 
-const ItemListContainer = () => {
-    const [loading, setLoading] = useState(true)
+
+const ItemListContainer = ({ categoryHome }) => {
+    // const [loading, setLoading] = useState(true)
 
     const { categoryId } = useParams();
 
@@ -15,38 +19,40 @@ const ItemListContainer = () => {
 
 
 
-
     useEffect(() => {
-        getProductos
-            .then(res => {
-                if (categoryId) {
-                    setProductos(res.filter(item => item.category === categoryId))
-                } else {
-                    setProductos(res)
-                }
-            })
 
+        const db = getFirestore();
+        let q = query(collection(db, 'items'));
 
-            .catch(err => console.log(err))
-            .finally()
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 3000);
-
+        if (!categoryId) {
+            getDocs(q).then((snapShot) => {
+                setProductos(snapShot.docs.map((doc) => doc.data()));
+            });
+        } else {
+            const q = query(collection(db, "items"),
+                where("category", "==", categoryId)
+            );
+            getDocs(q).then((snapShot) => {
+                setProductos(snapShot.docs.map((doc) => doc.data()))
+            });
+        }
     }, [categoryId]);
+
+
 
 
     return (
 
         <div className='container-fluid row justify-content-center'>
-            {loading ?
-                <div>
-                    <Loader />
-                </div>
-                :
-                productos.map((item) => (
-                    <Item producto={item} key={item.id} />
+            {
+                // loading ?
+                //     <div>
+                //         <Loader />
+                //     </div>
+                //     :
+                // productos &&
+                productos.map((productos) => (
+                    <Item producto={productos} key={productos.name} />
                 ))
             }
         </div>
