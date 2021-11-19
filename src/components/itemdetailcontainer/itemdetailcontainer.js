@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 import ItemDetail from '../itemdetail/itemDetail';
 import { getFirestore } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
-// import { getProductos } from '../../getProducts';
-// import { getProductos } from '../../getProducts';
 // import Loader from '../loader/loader'
 
 
