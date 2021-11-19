@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
 
     const { detailId } = useParams();
     const [productos, setProductos] = useState({});
-    // const [loadingTwo, setLoadingTwo] = useState(true)  //se muestra un loading inicial en true
+    // const [loadingTwo, setLoadingTwo] = useState(true)
 
 
 
