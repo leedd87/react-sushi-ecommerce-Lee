@@ -1,44 +1,35 @@
 import React, { useState, useEffect } from 'react';
-
 import Item from '../items/items';
 import { useParams } from "react-router-dom";
-// import Loader from '../loader/loader';
-
 import { getDocs, getFirestore } from "@firebase/firestore";
 import { collection, query, where } from "firebase/firestore";
-
-
+// import Loader from '../loader/loader';
 
 const ItemListContainer = ({ categoryHome }) => {
     // const [loading, setLoading] = useState(true)
 
     const { categoryId } = useParams();
-
     const [productos, setProductos] = useState([]);
     console.log(productos)
 
-
-
     useEffect(() => {
-
         const db = getFirestore();
         let q = query(collection(db, 'items'));
 
         if (!categoryId) {
             getDocs(q).then((snapShot) => {
-                setProductos(snapShot.docs.map((doc) => doc.data()));
+                setProductos(snapShot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
             });
-        } else {
+        }
+        else {
             const q = query(collection(db, "items"),
                 where("category", "==", categoryId)
             );
             getDocs(q).then((snapShot) => {
-                setProductos(snapShot.docs.map((doc) => doc.data()))
+                setProductos(snapShot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
             });
         }
     }, [categoryId]);
-
-
 
 
     return (
@@ -50,7 +41,7 @@ const ItemListContainer = ({ categoryHome }) => {
                 //         <Loader />
                 //     </div>
                 //     :
-                // productos &&
+                //     productos &&
                 productos.map((productos) => (
                     <Item producto={productos} key={productos.name} />
                 ))

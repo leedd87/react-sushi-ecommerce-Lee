@@ -7,7 +7,8 @@ const ItemCounter = ({ onAdd, stock }) => {
     const [count, setCount] = useState(0);
     // const { addItem, updateItemsInCart } = useContext(CartContext)
 
-    const encrease = () => {
+    const encrease = (e) => {
+
         if (count < stock) {
             setCount(count + 1)
             // if (!showBtn) {
@@ -17,7 +18,8 @@ const ItemCounter = ({ onAdd, stock }) => {
         } else { alert('No hay mas stock') }
     }
 
-    const decrease = () => {
+    const decrease = (e) => {
+
         if (count > 1) {
             setCount(count - 1)
         } else { alert('No se puede elegir menos') } //revisar si vale la pena mantener alert

@@ -5,18 +5,14 @@ import { getFirestore } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 // import Loader from '../loader/loader'
 
-
 const ItemDetailContainer = () => {
 
     const { detailId } = useParams();
     const [productos, setProductos] = useState({});
     // const [loadingTwo, setLoadingTwo] = useState(true)
 
-
-
     useEffect(() => {
         const db = getFirestore();
-
         const itemRef = doc(db, 'items', detailId);
         getDoc(itemRef).then(snapShot => {
             if (snapShot.exists()) {
@@ -24,10 +20,8 @@ const ItemDetailContainer = () => {
                 setProductos(snapShot.data())
             }
         })
+        console.log(db)
     }, [detailId])
-
-
-
 
 
     return (
