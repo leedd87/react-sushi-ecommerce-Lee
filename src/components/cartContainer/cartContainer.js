@@ -7,7 +7,6 @@ import { CheckOutForm } from "../forms/checkOutForm"
 const Cart = () => {
     const { totalCart, cartList, emptyCart, removeItem, cantParcial } = useContext(CartContext);
     console.log(cartList);
-    console.log('prueba')
 
     return totalCart === 0 ? (
         <>
