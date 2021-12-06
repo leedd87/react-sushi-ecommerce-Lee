@@ -27,11 +27,8 @@ const ItemDetailContainer = () => {
         <>
             <div className='container-fluid row justify-content-center'>
                 {
-
-
                     <ItemDetail
                         item={productos} />
-
                 }
             </div>
         </>

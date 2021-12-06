@@ -3,7 +3,7 @@ import Item from '../items/items';
 import { useParams } from "react-router-dom";
 import { getDocs, getFirestore } from "@firebase/firestore";
 import { collection, query, where } from "firebase/firestore";
-// import Loader from '../loader/loader';
+
 
 const ItemListContainer = ({ categoryHome }) => {
     // const [loading, setLoading] = useState(true)
@@ -36,12 +36,6 @@ const ItemListContainer = ({ categoryHome }) => {
 
         <div className='container-fluid row justify-content-center'>
             {
-                // loading ?
-                //     <div>
-                //         <Loader />
-                //     </div>
-                //     :
-                //     productos &&
                 productos.map((productos) => (
                     <Item producto={productos} key={productos.name} />
                 ))

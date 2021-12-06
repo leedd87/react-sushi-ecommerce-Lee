@@ -1,20 +1,14 @@
 import { useState } from "react"
-// import { useContext } from "react";
-// import { CartContext } from "../../context/cartContext";
 
 const ItemCounter = ({ onAdd, stock }) => {
 
     const [count, setCount] = useState(0);
-    // const { addItem, updateItemsInCart } = useContext(CartContext)
+
 
     const encrease = (e) => {
 
         if (count < stock) {
             setCount(count + 1)
-            // if (!showBtn) {
-            //     addItem(item, 1);
-            //     updateItemsInCart(item, -1)
-            // }
         } else { alert('No hay mas stock') }
     }
 
@@ -39,7 +33,6 @@ const ItemCounter = ({ onAdd, stock }) => {
                         onAdd(count)
                     }} className="btn btn-primary d-flex justify-content-center mb-3"> Agregar Al carrito</button>
                 </div>
-                {/* <p className=" my-3"> Cantidad: {count}</p> */}
             </div>
         </>
     )
